@@ -5,4 +5,5 @@ class TweetForm(forms.ModelForm):
     class Meta:
         model = Tweet
         feilds = ['text','photo']
+        exclude = ()
         
