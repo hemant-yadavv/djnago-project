@@ -8,6 +8,16 @@ class TweetForm(forms.ModelForm):
         model = Tweet
         feilds = ['text','photo']
         exclude = ('user',)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        text = cleaned_data.get('text')
+        photo = cleaned_data.get('photo')
+
+        if not text:
+            self.add_error('text', 'This field is required.')
+        if not photo:
+            self.add_error('photo', 'This field is required.')
         
 
 class UserRegistrationForm(UserCreationForm):
